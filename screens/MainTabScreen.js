@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from "react-native-vector-icons/Ionicons";
+// import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import Home from './HomeScreen';
 import Details from './DetailsScreen';
@@ -45,7 +46,7 @@ function MainTabScreen() {
           ),
         }}
       />
-        <Tab.Screen
+      <Tab.Screen
         name="Profile"
         component={ProfileStackScreen}
         options={{
@@ -108,13 +109,14 @@ function DetailsStackScreen({ navigation}) {
 function ProfileStackScreen({ navigation}) {
   return (
     <ProfileStack.Navigator screenOptions={{
-      headerStyle: { backgroundColor: "orange" },
+      headerStyle: { backgroundColor: "white" },
       headerTintColor: 'white',
       headerTitleStyle: { fontWeight: 'bold' }
     }}>
       <ProfileStack.Screen name="Profile" component={Profile}
-      options={{
-          headerLeft: () => (<Icon.Button name='ios-menu' size={25} backgroundColor='orange' onPress={() => { navigation.openDrawer() }}></Icon.Button>)
+        options={{
+          title:"",
+          headerLeft: () => (<Icon.Button name='ios-menu' size={25} backgroundColor="white" color="black" onPress={() => { navigation.openDrawer() }}></Icon.Button>)
         }}/>
     </ProfileStack.Navigator>
   );

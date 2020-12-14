@@ -1,15 +1,18 @@
 import React from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
-import { Avatar, Title, Caption, Paragraph, Drawer, Text, TouchableRipple, Switch, ToggleButton } from 'react-native-paper';
+import { useTheme,Avatar, Title, Caption, Paragraph, Drawer, Text, TouchableRipple, Switch, ToggleButton } from 'react-native-paper';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import { AuthContext } from '../Component/Context';
+
 
 export function DrawerContent(props) {
-    const [isDarkTheme, setIsDarkTheme] = React.useState(false);
-    const toggleTheme = () => {
-        setIsDarkTheme(!isDarkTheme);
-    }
+
+    const paperTheme = useTheme();
+    
+    const { signOut,toggleTheme } = React.useContext(AuthContext);
+    
     return (
         <View style={{flex:1}}>
             <DrawerContentScrollView{...props}>
@@ -74,7 +77,7 @@ export function DrawerContent(props) {
                             <View style={{flexDirection: 'row',justifyContent: 'space-between',paddingVertical: 12,paddingHorizontal: 16,}}>
                                 <Text>Dark Theme</Text>
                                 <View pointerEvents="none">
-                                    <Switch value={ isDarkTheme}/>
+                                    <Switch value={ paperTheme.dark}/>
                                 </View>
                                 
                             </View>
@@ -86,10 +89,10 @@ export function DrawerContent(props) {
             </DrawerContentScrollView>
              <Drawer.Section style={{marginBottom:15,borderTopColor:'black',borderTopWidth:1}}>
                 <DrawerItem 
-                    icon={({color, size}) => (
-                    <Icon name="exit-to-app" color={color} size={size} />)}
+                    icon={({ color, size }) => (
+                        <Icon name="exit-to-app" color={color} size={size} />)}
                     label="Sign Out"
-                    onPress={() => {Alert.alert("button press")}}
+                    onPress={() => { signOut() }}
                 />
             </Drawer.Section>
         </View>
