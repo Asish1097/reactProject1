@@ -7,6 +7,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { AsyncStorage } from 'react-native';
 import { Provider as PaperProvider, DefaultTheme as PaperDefaultTheme,DarkTheme as PaperDarkTheme } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+// import Icon from "react-native-vector-icons/Ionicons";
+
 // import Icon from "react-native-vector-icons/Ionicons"
 
 
@@ -158,7 +160,12 @@ function App() {
         {loginState.userToken != null ? (
           <Drawer.Navigator drawerContent={props => <DrawerContent{...props} />}>
             <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
-            <Drawer.Screen name="Bookmark" component={Bookmark} />
+            <Drawer.Screen name="Bookmark" component={Bookmark}
+                options={{
+                  headerShown: "true",
+                  
+                }}
+            />
             <Drawer.Screen name="Setting" component={Setting} />
             <Drawer.Screen name="Support" component={Support} />
           </Drawer.Navigator>
